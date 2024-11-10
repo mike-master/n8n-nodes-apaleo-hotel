@@ -76,6 +76,29 @@ n8n start
 2. Click **New** and select **Apaleo API**
 3. Enter your Apaleo API credentials and save them
 
+## Implemented Endpoints
+
+The following Apaleo endpoints are currently supported:
+
+### Booking
+
+- **POST** `/booking/v1/bookings`  
+  Creates a booking for one or more reservations.
+
+- **GET** `/booking/v1/bookings/{id}`  
+  Retrieves a specific booking.
+
+- **PATCH** `/booking/v1/bookings/{id}`  
+  Allows modification of certain booking properties.
+
+### Reservation
+
+- **GET** `/booking/v1/reservations/{id}`  
+  Retrieves a specific reservation.
+
+- **PATCH** `/booking/v1/reservations/{id}`  
+  Allows modification of certain reservation properties.
+
 ## Usage
 
 After setting up the credentials, you can add Apaleo nodes to your workflows by selecting **Apaleo** in the node selection menu. Configure each node by choosing the relevant actions and fields provided by Apaleo.
