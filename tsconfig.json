@@ -20,7 +20,7 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "outDir": "./dist/",
-    "types": ["node"],  // Sicherstellen, dass 'node' hier explizit angegeben wird
+    "types": ["node"],  // Sicherstellen, dass 'node' hier explizit angegeben ist
     "typeRoots": [
       "node_modules/@types",  // Typdefinitionen von @types
       "node_modules/n8n-workflow/types"  // Pfad zu den Typen von n8n, falls notwendig
