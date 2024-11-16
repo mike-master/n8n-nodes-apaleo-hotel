@@ -85,6 +85,9 @@ The following Apaleo endpoints are currently supported:
 - **POST** `/booking/v1/bookings`  
   Creates a booking for one or more reservations.
 
+- **GET** `/booking/v1/bookings`  
+   Retrieve a list of bookings.
+
 - **GET** `/booking/v1/bookings/{id}`  
   Retrieves a specific booking.
 
@@ -93,11 +96,19 @@ The following Apaleo endpoints are currently supported:
 
 ### Reservation
 
+- **GET** `/booking/v1/reservations`  
+  Returns a list of all reservations.
+
 - **GET** `/booking/v1/reservations/{id}`  
   Retrieves a specific reservation.
 
 - **PATCH** `/booking/v1/reservations/{id}`  
   Allows modification of certain reservation properties.
+
+### Reservation Actions
+
+- **PUT** `/booking/v1/reservation-actions/{id}/assign-unit`  
+  Assign unit to reservation.
 
 ## Usage
 
