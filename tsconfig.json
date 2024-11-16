@@ -20,7 +20,11 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "outDir": "./dist/",
-    "types": ["node"]  // Hier hinzufügen
+    "types": ["node"],  // Hier sicherstellen, dass node mit angegeben ist
+    "typeRoots": [
+      "node_modules/@types",  // Dieser Pfad könnte hinzugefügt werden, falls @types nicht gefunden wird
+      "node_modules/n8n-workflow/types"
+    ]
   },
   "include": [
     "credentials/**/*",
