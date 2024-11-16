@@ -147,18 +147,6 @@ npm run lintfix
 
 Test your node locally to ensure everything works as expected. For more information, refer to the [documentation on running nodes locally](https://docs.n8n.io/nodes/creating-nodes/testing/).
 
-### 5. Documentation
-
-Replace this README with documentation specific to your node. You can use the `README_TEMPLATE.md` as a starting point.
-
-## Publishing
-
-Once your nodes are complete, you can publish the package to the npm registry.
-
-## More Information
-
-For more detailed information on creating nodes, please refer to the [official documentation](https://docs.n8n.io/nodes/creating-nodes/).
-
 ## Support
 
 If you encounter any issues or have feature requests, please open an issue in this repository.
