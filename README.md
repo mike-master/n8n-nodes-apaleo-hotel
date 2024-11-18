@@ -1,68 +1,17 @@
+<p align="center">
+  <img width="180" height="180" src="/nodes/ApaleoAPI/apaleo.svg">
+</p>
+
+
 # n8n Nodes for Apaleo
 
 This repository provides custom nodes for [n8n](https://n8n.io), enabling integration with Apaleo, a property management platform tailored for the hospitality industry. Use these nodes to automate workflows that interact with Apaleo's data and services.
 
 To contribute and make this custom node available to the community, create it as an npm package and publish it to the npm registry.
 
-## Prerequisites
+## install
 
-Ensure the following tools are installed on your development machine:
-
-- `git`
-- [Node.js](https://nodejs.org/) (version 18 or higher)
-- [npm](https://www.npmjs.com/) (recommended package manager)
-
-### Install n8n globally
-
-```bash
-npm install n8n -g
-```
-
-**Recommended:** Follow the [n8n development environment setup guide](https://docs.n8n.io/) for optimal configuration.
-
-## Installation 
-
-### 1. Clone the Repository
-
-Clone this repository to your local machine to use these custom nodes:
-
-```bash
-git clone https://github.com/hidN87/n8n-nodes-apaleo.git
-cd n8n-nodes-apaleo
-```
-
-### 2. Install Dependencies
-
-Install the required dependencies using npm:
-
-```bash
-npm install
-```
-
-### 3. Link the Module to n8n
-
-Make this package accessible as a custom module in n8n:
-
-```bash
-npm link
-```
-
-Then, link it within your n8n installation:
-
-```bash
-cd /path/to/n8n
-npm link n8n-nodes-apaleo
-```
-
-This will make `n8n-nodes-apaleo` available as a module for use within n8n.
-
-### 4. Restart n8n
-
-After linking the custom nodes, restart n8n to load the newly added Apaleo nodes:
-
-```bash
-n8n start
-```
+![Settings Animation](install.gif)
 
 ## Setup
 
