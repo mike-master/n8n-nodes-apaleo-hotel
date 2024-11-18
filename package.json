@@ -1,9 +1,9 @@
 {
   "name": "n8n-nodes-apaleo",
-  "version": "0.1.0",
-  "description": "A custom n8n node for interacting with the Apaleo API",
+  "version": "0.1.14",
+  "description": " custom n8n node for interacting with the Apaleo API",
   "keywords": [
-    "n8n-community-node-package",
+		"n8n-community-node-package",
     "n8n",
     "apaleo",
     "api"
@@ -11,13 +11,17 @@
   "license": "MIT",
   "homepage": "https://github.com/hidN87/n8n-nodes-apaleo",
   "author": {
-    "name": "hidN87",
-    "email": ""
+    "name": "hidN87"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/deinbenutzername/n8n-nodes-apaleo.git"
+    "url": "https://github.com/hidN87/n8n-nodes-apaleo"
   },
+  "engines": {
+    "node": ">=18.10",
+    "pnpm": ">=9.1"
+  },
+  "packageManager": "pnpm@9.1.4",
   "main": "index.js",
   "scripts": {
     "build": "tsc && gulp build:icons",
@@ -33,27 +37,23 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
+      "dist/credentials/ApaleoApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/ApaleoApi/ApaleoApi.node.js"
+      "dist/nodes/ApaleoAPI/ApaleoApi.node.js"
     ]
   },
   "devDependencies": {
-    "@types/base-64": "^1.0.2",
-    "@types/node": "^20.17.6",
+    "base-64": "^1.0.0",
+    "date-fns": "^4.1.0",
     "@typescript-eslint/parser": "~5.45",
     "eslint-plugin-n8n-nodes-base": "^1.11.0",
     "gulp": "^4.0.2",
+    "n8n-workflow": "*",
     "prettier": "^2.7.1",
     "typescript": "~4.8.4"
   },
   "peerDependencies": {
-    "n8n-workflow": "^1.0.0"
-  },
-  "dependencies": {
-    "base-64": "^1.0.0",
-    "date-fns": "^4.1.0"
+    "n8n-workflow": "*"
   }
 }

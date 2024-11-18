@@ -19,7 +19,6 @@ export class ApaleoApi implements INodeType {
     // Node Configuration
     defaults: {
       name: 'Apaleo API',
-      color: '#1A82e2',
     },
     inputs: ['main'],
     outputs: ['main'],
@@ -234,7 +233,7 @@ export class ApaleoApi implements INodeType {
         type: 'string',
         required: true,
         default: '',
-        description: 'The ID of the booking to retrieve or modify.',
+        description: 'The ID of the booking to retrieve or modify',
         displayOptions: {
           show: {
             resource: ['booking'],
@@ -260,16 +259,16 @@ export class ApaleoApi implements INodeType {
         name: 'channelCode',
         type: 'multiOptions',
         options: [
-          { name: 'Direct', value: 'Direct' },
-          { name: 'OTA', value: 'OTA' },
-          { name: 'Ibe', value: 'Ibe' },
-          { name: 'ChannelManager', value: 'ChannelManager' },
-          { name: 'Expedia', value: 'Expedia' },
-          { name: 'Homelike', value: 'Homelike' },
-          { name: 'Hrs', value: 'Hrs' },
-          { name: 'AltoVita', value: 'AltoVita' },
-          { name: 'DesVu', value: 'DesVu' },
-        ],
+					{ name: 'AltoVita', value: 'AltoVita' },
+					{ name: 'ChannelManager', value: 'ChannelManager' },
+					{ name: 'DesVu', value: 'DesVu' },
+					{ name: 'Expedia', value: 'Expedia' },
+					{ name: 'Homelike', value: 'Homelike' },
+					{ name: 'Hrs', value: 'Hrs' },
+					{ name: 'Ibe', value: 'Ibe' },
+					{ name: 'OTA', value: 'OTA' },
+					{ name: 'Direct', value: 'Direct' },
+				],
         default: [],
         description: 'Filter bookings by channel codes',
         displayOptions: {
@@ -312,7 +311,7 @@ export class ApaleoApi implements INodeType {
             "from": "string"
           }
         ]`,
-        description: 'JSON patch operations for booking modifications.',
+        description: 'JSON patch operations for booking modifications',
         displayOptions: {
           show: {
             operation: ['patch_booking_by_id'],
@@ -404,7 +403,7 @@ export class ApaleoApi implements INodeType {
             "transactionReference": "564578124534890J"
           }
         ]`,
-        description: 'JSON array of reservation objects to create the booking.',
+        description: 'JSON array of reservation objects to create the booking',
         displayOptions: {
           show: {
             resource: ['booking'],
@@ -420,7 +419,7 @@ export class ApaleoApi implements INodeType {
         type: 'string',
         required: true,
         default: '',
-        description: 'The ID of the reservation to retrieve or modify.',
+        description: 'The ID of the reservation to retrieve or modify',
         displayOptions: {
           show: {
             resource: ['reservation'],
@@ -618,16 +617,16 @@ export class ApaleoApi implements INodeType {
         name: 'channelCode',
         type: 'multiOptions',
         options: [
-          { name: 'Direct', value: 'Direct' },
-          { name: 'BookingCom', value: 'BookingCom' },
-          { name: 'Ibe', value: 'Ibe' },
-          { name: 'ChannelManager', value: 'ChannelManager' },
-          { name: 'Expedia', value: 'Expedia' },
-          { name: 'Homelike', value: 'Homelike' },
-          { name: 'Hrs', value: 'Hrs' },
-          { name: 'AltoVita', value: 'AltoVita' },
-          { name: 'DesVu', value: 'DesVu' },
-        ],
+					{ name: 'AltoVita', value: 'AltoVita' },
+					{ name: 'ChannelManager', value: 'ChannelManager' },
+					{ name: 'DesVu', value: 'DesVu' },
+					{ name: 'Expedia', value: 'Expedia' },
+					{ name: 'Homelike', value: 'Homelike' },
+					{ name: 'Hrs', value: 'Hrs' },
+					{ name: 'Ibe', value: 'Ibe' },
+					{ name: 'OTA', value: 'OTA' },
+					{ name: 'Direct', value: 'Direct' },
+				],
         default: [],
         description: 'Filter result by the channel code',
         displayOptions: {
@@ -674,7 +673,7 @@ export class ApaleoApi implements INodeType {
         type: 'string',
         typeOptions: { multipleValues: true },
         default: [],
-        description: `Filter reservations based on their balance. Provide expressions in the form 'OPERATION_VALUE' where OPERATION can be 'eq', 'neq', 'lt', 'gt', 'lte', 'gte'.`,
+        description: 'Filter reservations based on their balance. Provide expressions in the form OPERATION_VALUE where OPERATION can be eq, neq, lt, gt, lte, gte',
         displayOptions: {
           show: {
             resource: ['reservation'],
@@ -687,7 +686,7 @@ export class ApaleoApi implements INodeType {
         name: 'allFoliosHaveInvoice',
         type: 'boolean',
         default: false,
-        description: `If true, returns only reservations where all folios are closed and have an invoice. If false, returns reservations where some folios are open or lack an invoice.`,
+        description: 'If true, returns only reservations where all folios are closed and have an invoice. If false, returns reservations where some folios are open or lack an invoice',
         displayOptions: {
           show: {
             resource: ['reservation'],
@@ -718,7 +717,7 @@ export class ApaleoApi implements INodeType {
           { name: 'unitname:desc', value: 'unitname:desc' },
         ],
         default: [],
-        description: `Fields to sort the results. Multiple fields can be specified.`,
+        description: 'Fields to sort the results. Multiple fields can be specified',
         displayOptions: {
           show: {
             resource: ['reservation'],
@@ -759,7 +758,7 @@ export class ApaleoApi implements INodeType {
             "from": "string"
           }
         ]`,
-        description: 'JSON patch operations for reservation modifications.',
+        description: 'JSON patch operations for reservation modifications',
         displayOptions: {
           show: {
             operation: ['patch_reservation_by_id'],
