@@ -18,12 +18,16 @@ To contribute and make this custom node available to the community, create it as
 ### Get Apaleo API Credentials
 
 1. Log in to your [Apaleo account](https://app.apaleo.com/apps/connected-apps/create) to create and retrieve a new App and get your client id and secret id.
+2. Go to **APPS** > **connected Apps** in the n8n dashboard
+3. Click **create new** and select **Aindividual App**
+4. Enter your **Client Code** and **Client Name** and save them and get your **Credentials**
+
 
 ### Add Credentials to n8n
 
-1. Go to **APPS** > **connected Apps** in the n8n dashboard
-2. Click **create new** and select **Aindividual App**
-3. Enter your **Client Code** and **Client Name** and save them and get your **Credentials**
+1. Go to ***Settings*** > ***Credentials*** in the n8n dashboard
+2. Click ***New*** and select Apaleo API
+3. Enter your Apaleo API credentials and save them
 
 ## Implemented Endpoints
 
