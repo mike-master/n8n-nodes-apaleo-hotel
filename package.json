@@ -1,10 +1,11 @@
 {
   "name": "n8n-nodes-apaleo",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": " custom n8n node for interacting with the Apaleo API",
   "keywords": [
 		"n8n-community-node-package",
     "n8n",
+    "n8n.io",
     "apaleo",
     "api"
   ],
@@ -17,11 +18,6 @@
     "type": "git",
     "url": "https://github.com/hidN87/n8n-nodes-apaleo"
   },
-  "engines": {
-    "node": ">=18.10",
-    "pnpm": ">=9.1"
-  },
-  "packageManager": "pnpm@9.1.4",
   "main": "index.js",
   "scripts": {
     "build": "tsc && gulp build:icons",
