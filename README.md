@@ -17,13 +17,13 @@ To contribute and make this custom node available to the community, create it as
 
 ### Get Apaleo API Credentials
 
-1. Log in to your [Apaleo Developer account](https://developer.apaleo.com) to create and retrieve your API keys.
+1. Log in to your [Apaleo account](https://app.apaleo.com/apps/connected-apps/create) to create and retrieve a new App and get your client id and secret id.
 
 ### Add Credentials to n8n
 
-1. Go to **Settings** > **Credentials** in the n8n dashboard
-2. Click **New** and select **Apaleo API**
-3. Enter your Apaleo API credentials and save them
+1. Go to **APPS** > **connected Apps** in the n8n dashboard
+2. Click **create new** and select **Aindividual App**
+3. Enter your **Client Code** and **Client Name** and save them and get your **Credentials**
 
 ## Implemented Endpoints
 
@@ -68,31 +68,7 @@ After setting up the credentials, you can add Apaleo nodes to your workflows by 
 **Automate Booking Management:**  
 Create workflows that automatically retrieve and manage bookings, cancellations, and customer data from Apaleo. Integrate this data with other applications such as CRMs, email systems, and more.
 
-## Development and Testing
-
-### 1. Modify Example Nodes
-
-Modify or replace the example nodes located in the `/nodes` and `/credentials` folders according to your needs.
-
-### 2. Update `package.json`
-
-Update the `package.json` file with your package details.
-
-### 3. Lint the Code
-
-Run the following command to check for errors:
-
-```bash
-npm run lint
-```
-
-To automatically fix errors, use:
-
-```bash
-npm run lintfix
-```
-
-### 4. Test Locally
+## Test Locally
 
 Test your node locally to ensure everything works as expected. For more information, refer to the [documentation on running nodes locally](https://docs.n8n.io/nodes/creating-nodes/testing/).
 

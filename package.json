@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-apaleo",
-  "version": "0.1.14",
+  "version": "0.2.1",
   "description": " custom n8n node for interacting with the Apaleo API",
   "keywords": [
 		"n8n-community-node-package",
