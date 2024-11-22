@@ -7,7 +7,7 @@ export async function reservationActionsOperations(
   accessToken: string,
   returnData: INodeExecutionData[]
 ) {
-  if (operation === 'put_assign_unit_to_reservation') {
+  if (operation === 'PUT assign unit to reservation') {
     const reservationId = node.getNodeParameter('reservationId', itemIndex) as string;
     const unitConditions = node.getNodeParameter('unitConditions', itemIndex, []) as string[];
 
@@ -39,6 +39,30 @@ export async function reservationActionsOperations(
       returnData.push({ json: response || { message: 'Unit assigned successfully' } });
     } catch (error) {
       throw new Error(`Apaleo assign unit failed: ${error.message}`);
+    }
+  } else if (operation === 'PUT unassign unit from reservation') {
+    const reservationId = node.getNodeParameter('reservationId', itemIndex) as string;
+
+    // Validieren der Parameter
+    if (!reservationId) {
+      throw new Error('The reservation ID is required.');
+    }
+
+    const options = {
+      method: 'PUT' as IHttpRequestMethods,
+      url: `https://api.apaleo.com/booking/v1/reservation-actions/${reservationId}/unassign-units`,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      json: true,
+    };
+
+    try {
+      const response = await node.helpers.requestWithAuthentication.call(node, 'apaleoApi', options);
+      returnData.push({ json: response || { message: 'Unit unassigned successfully' } });
+    } catch (error) {
+      throw new Error(`Apaleo unassign unit failed: ${error.message}`);
     }
   } else {
     throw new Error(`Operation "${operation}" is not supported in reservationActions.`);

@@ -7,16 +7,26 @@ export async function bookingOperations(
   accessToken: string,
   returnData: INodeExecutionData[]
 ) {
-  if (operation === 'get_booking_by_id') {
+  // Helper function to add non-empty query parameters
+  const constructUrlWithParams = (baseUrl: string, params: Record<string, any>): string => {
+    const queryParams = Object.entries(params)
+      .filter(([_, value]) => value !== undefined && value !== null && value !== '' && (!(Array.isArray(value) && value.length === 0)))
+      .map(([key, value]) => `${key}=${encodeURIComponent(Array.isArray(value) ? value.join(',') : value)}`)
+      .join('&');
+    return queryParams ? `${baseUrl}?${queryParams}` : baseUrl;
+  };
+
+  if (operation === 'GET booking by ID') {
     const bookingId = node.getNodeParameter('bookingId', itemIndex) as string;
     const expandBooking = node.getNodeParameter('expandBooking', itemIndex) as string[];
 
-    const query = expandBooking.length ? { expand: expandBooking.join(',') } : {};
+    const params = { expand: expandBooking.length > 0 ? expandBooking.join(',') : undefined };
+    const url = constructUrlWithParams(`https://api.apaleo.com/booking/v1/bookings/${bookingId}`, params);
+
     const options = {
       method: 'GET' as IHttpRequestMethods,
-      url: `https://api.apaleo.com/booking/v1/bookings/${bookingId}`,
+      url,
       headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
-      qs: query,
       json: true,
     };
 
@@ -26,7 +36,7 @@ export async function bookingOperations(
     } catch (error) {
       throw new Error(`Apaleo GET booking failed: ${error.message}`);
     }
-  } else if (operation === 'create_booking') {
+  } else if (operation === 'POST bookings') {
     const reservationsData = node.getNodeParameter('reservationsData', itemIndex) as string;
     let parsedReservationsData;
 
@@ -50,7 +60,7 @@ export async function bookingOperations(
     } catch (error) {
       throw new Error(`Apaleo POST booking failed: ${error.message}`);
     }
-  } else if (operation === 'patch_booking_by_id') {
+  } else if (operation === 'PATCH booking by ID') {
     const bookingId = node.getNodeParameter('bookingId', itemIndex) as string;
     const patchOperations = node.getNodeParameter('patchOperationsBooking', itemIndex) as string;
     let parsedPatchOperations;
@@ -75,31 +85,24 @@ export async function bookingOperations(
     } catch (error) {
       throw new Error(`Apaleo PATCH booking failed: ${error.message}`);
     }
-  } else if (operation === 'get_all_bookings') {
-    const reservationId = node.getNodeParameter('reservationId', itemIndex, '') as string;
-    const groupId = node.getNodeParameter('groupId', itemIndex, '') as string;
-    const channelCode = node.getNodeParameter('channelCode', itemIndex, []) as string[];
-    const externalCode = node.getNodeParameter('externalCode', itemIndex, '') as string;
-    const textSearch = node.getNodeParameter('textSearch', itemIndex, '') as string;
-    const pageNumber = node.getNodeParameter('pageNumber', itemIndex, 1) as number;
-    const pageSize = node.getNodeParameter('pageSize', itemIndex, 10) as number;
-    const expand = node.getNodeParameter('expand', itemIndex, []) as string[];
+  } else if (operation === 'GET bookings') {
+    const params = {
+      reservationId: node.getNodeParameter('reservationId', itemIndex, '') as string,
+      groupId: node.getNodeParameter('groupId', itemIndex, '') as string,
+      channelCode: node.getNodeParameter('channelCode', itemIndex, []) as string[],
+      externalCode: node.getNodeParameter('externalCode', itemIndex, '') as string,
+      textSearch: node.getNodeParameter('textSearch', itemIndex, '') as string,
+      pageNumber: node.getNodeParameter('pageNumber', itemIndex, 1) as number,
+      pageSize: node.getNodeParameter('pageSize', itemIndex, 10) as number,
+      expand: node.getNodeParameter('expand', itemIndex, []) as string[],
+    };
 
-    const query: any = {};
-    if (reservationId) query.reservationId = reservationId;
-    if (groupId) query.groupId = groupId;
-    if (channelCode.length > 0) query.channelCode = channelCode.join(',');
-    if (externalCode) query.externalCode = externalCode;
-    if (textSearch) query.textSearch = textSearch;
-    if (pageNumber) query.pageNumber = pageNumber;
-    if (pageSize) query.pageSize = pageSize;
-    if (expand.length > 0) query.expand = expand.join(',');
+    const url = constructUrlWithParams(`https://api.apaleo.com/booking/v1/bookings`, params);
 
     const options = {
       method: 'GET' as IHttpRequestMethods,
-      url: `https://api.apaleo.com/booking/v1/bookings`,
+      url: url,
       headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
-      qs: query,
       json: true,
     };
 

@@ -63,6 +63,10 @@ The following Apaleo endpoints are currently supported:
 - **PUT** `/booking/v1/reservation-actions/{id}/assign-unit`  
   Assign unit to reservation.
 
+- **PUT** `/booking/v1/reservation-actions/{id}/unassign-unit`  
+  Unassign unit from reservation.
+
+
 ## Usage
 
 After setting up the credentials, you can add Apaleo nodes to your workflows by selecting **Apaleo** in the node selection menu. Configure each node by choosing the relevant actions and fields provided by Apaleo.
