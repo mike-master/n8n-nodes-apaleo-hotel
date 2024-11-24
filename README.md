@@ -39,7 +39,7 @@ The following Apaleo endpoints are currently supported:
   Creates a booking for one or more reservations.
 
 - **GET** `/booking/v1/bookings`  
-   Retrieve a list of bookings.
+  Retrieve a list of bookings.
 
 - **GET** `/booking/v1/bookings/{id}`  
   Retrieves a specific booking.
@@ -50,13 +50,28 @@ The following Apaleo endpoints are currently supported:
 ### Reservation
 
 - **GET** `/booking/v1/reservations`  
-  Returns a list of all reservations.
+  Returns a list of all reservations with comprehensive filtering options.
 
 - **GET** `/booking/v1/reservations/{id}`  
-  Retrieves a specific reservation.
+  Retrieves a specific reservation with optional expanded information.
 
 - **PATCH** `/booking/v1/reservations/{id}`  
   Allows modification of certain reservation properties.
+
+- **GET** `/booking/v1/reservations/$count`  
+  Returns the count of reservations based on specified filters.
+
+- **GET** `/booking/v1/reservations/{id}/offers`  
+  Returns offers available for a specific reservation.
+
+- **GET** `/booking/v1/reservations/{id}/service-offers`  
+  Returns service offers available for a specific reservation.
+
+- **GET** `/booking/v1/reservations/{id}/services`  
+  Returns services associated with a specific reservation.
+
+- **DELETE** `/booking/v1/reservations/{id}/services`  
+  Removes a service from a reservation.
 
 ### Reservation Actions
 
@@ -66,15 +81,126 @@ The following Apaleo endpoints are currently supported:
 - **PUT** `/booking/v1/reservation-actions/{id}/unassign-unit`  
   Unassign unit from reservation.
 
+- **PUT** `/booking/v1/reservation-actions/{id}/checkout`  
+  Check out a reservation.
+
+- **PUT** `/booking/v1/reservation-actions/{id}/no-show`  
+  Mark a reservation as no-show.
+
+- **PUT** `/booking/v1/reservation-actions/{id}/add-city-tax`  
+  Add city tax to a reservation.
+
+### Block
+
+- **GET** `/booking/v1/blocks`  
+  List all blocks with filtering options.
+
+- **GET** `/booking/v1/blocks/{id}`  
+  Retrieve a specific block.
+
+- **POST** `/booking/v1/blocks`  
+  Create a new block.
+
+- **GET** `/booking/v1/blocks/$count`  
+  Returns the count of blocks based on specified filters.
+
+- **HEAD** `/booking/v1/blocks/{id}`  
+  Check if a block exists.
+
+### Block Actions
+
+- **PUT** `/booking/v1/block-actions/{id}/cancel`  
+  Cancel a block.
+
+### Groups
+
+- **GET** `/booking/v1/groups`  
+  List all groups with filtering options.
+
+- **GET** `/booking/v1/groups/{id}`  
+  Retrieve a specific group.
+
+- **POST** `/booking/v1/groups`  
+  Create a new group.
+
+- **GET** `/booking/v1/groups/$count`  
+  Returns the count of groups based on specified filters.
+
+### Offers
+
+- **GET** `/booking/v1/offers`  
+  List all offers with filtering options.
+
+- **GET** `/booking/v1/offers/{id}`  
+  Retrieve a specific offer.
+
+- **GET** `/booking/v1/offers/$count`  
+  Returns the count of offers based on specified filters.
+
+### Types Operations
+
+- **GET** `/sources`  
+  Returns a list of channels that could be used as a source to create bookings
+- **GET** `/allowed-values`  
+  Returns a list of values that a field of the specified type can take in the specified country
+  - Supported types: Gender, IdentificationType
+
+## Features
+
+- **Comprehensive API Coverage**: Implements a wide range of Apaleo API endpoints for bookings, reservations, blocks, and more.
+- **Type Safety**: Full TypeScript implementation with proper type definitions.
+- **Error Handling**: Robust error handling with descriptive error messages.
+- **Parameter Validation**: Validates input parameters including dates, required fields, and formats.
+- **Flexible Filtering**: Supports extensive filtering options for listing operations.
+- **Data Expansion**: Allows expanding related data in responses where supported.
+- **Pagination Support**: Implements proper pagination for list operations.
+- **OAuth Authentication**: Secure authentication using OAuth 2.0.
+
+## Parameter Options
+
+### Common Filter Parameters
+
+- **Property IDs**: Filter by specific properties
+- **Unit Groups**: Filter by unit group types or IDs
+- **Date Range**: Filter by various date types (arrival, departure, stay, etc.)
+- **Status**: Filter by reservation or booking status
+- **Channel**: Filter by booking channel (Direct, BookingCom, Expedia, etc.)
+- **Market Segments**: Filter by market segments
+- **Text Search**: Search across relevant fields
+
+### Expansion Options
+
+- Property details
+- Unit group information
+- Rate plan details
+- Service information
+- Company data
+- Block details
 
 ## Usage
 
 After setting up the credentials, you can add Apaleo nodes to your workflows by selecting **Apaleo** in the node selection menu. Configure each node by choosing the relevant actions and fields provided by Apaleo.
 
-### Example Use Case
+## Usage Examples
 
-**Automate Booking Management:**  
 Create workflows that automatically retrieve and manage bookings, cancellations, and customer data from Apaleo. Integrate this data with other applications such as CRMs, email systems, and more.
+
+### Example Workflows
+
+1. **Automated Booking Confirmation**
+   - Trigger on new booking
+   - Send confirmation email
+   - Update CRM system
+
+2. **No-Show Management**
+   - Monitor check-in status
+   - Process no-show charges
+   - Update availability
+
+3. **Group Booking Handling**
+   - Create group blocks
+   - Manage group reservations
+   - Send group-specific communications
 
 ## Test Locally
 
