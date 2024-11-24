@@ -36,7 +36,7 @@ The following Apaleo endpoints are currently supported:
 - ⬜ Inventory V1 0/33
 - ⬜ Rate Plan V1 0/43
 - ✅ Booking V1 53/53
-- 🔄 Finance V1 0/60
+- 🔄 Finance V1 7/60
 
 ## Features
 

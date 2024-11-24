@@ -5,35 +5,43 @@ import {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 
-import { blockProperties } from './properties/bookingV1/blockProperties';
-import { blockActionProperties } from './properties/bookingV1/blockActionProperties';
-import { bookingProperties } from './properties/bookingV1/bookingProperties';
-import { groupProperties } from './properties/bookingV1/groupProperties';
-import { typesProperties } from './properties/bookingV1/typesProperties';
-import { offerProperties } from './properties/bookingV1/offerProperties';
-import { reservationProperties } from './properties/bookingV1/reservationProperties';
-import { reservationActionProperties } from './properties/bookingV1/reservationActionProperties';
-
+// Booking API Operations
 import { blockOperations } from './operations/bookingV1/blockOperations';
 import { blockActionOperations } from './operations/bookingV1/blockActionOperations';
 import { bookingOperations } from './operations/bookingV1/bookingOperations';
 import { groupOperations } from './operations/bookingV1/groupOperations';
-import { typesOperations } from './operations/bookingV1/typesOperations';
 import { offerOperations } from './operations/bookingV1/offerOperations';
 import { reservationOperations } from './operations/bookingV1/reservationOperations';
 import { reservationActionOperations } from './operations/bookingV1/reservationActionOperations';
+import { typesOperations } from './operations/bookingV1/typesOperations';
 
-export class ApaleoAPI implements INodeType {
+// Finance API Operations
+import { folioOperations } from './operations/financeV1/folioOperations';
+
+// Booking API Properties
+import { blockProperties } from './properties/bookingV1/blockProperties';
+import { blockActionProperties } from './properties/bookingV1/blockActionProperties';
+import { bookingProperties } from './properties/bookingV1/bookingProperties';
+import { groupProperties } from './properties/bookingV1/groupProperties';
+import { offerProperties } from './properties/bookingV1/offerProperties';
+import { reservationProperties } from './properties/bookingV1/reservationProperties';
+import { reservationActionProperties } from './properties/bookingV1/reservationActionProperties';
+import { typesProperties } from './properties/bookingV1/typesProperties';
+
+// Finance API Properties
+import { folioProperties } from './properties/financeV1/folioProperties';
+
+class ApaleoApi implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Apaleo API',
+		displayName: 'Apaleo',
 		name: 'apaleoApi',
 		icon: 'file:apaleo.svg',
 		group: ['transform'],
 		version: 1,
-		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Consume Apaleo API',
+		subtitle: '={{$parameter["operation"]}}',
+		description: 'Interact with Apaleo API',
 		defaults: {
-			name: 'Apaleo API',
+			name: 'Apaleo',
 		},
 		inputs: ['main'],
 		outputs: ['main'],
@@ -56,7 +64,9 @@ export class ApaleoAPI implements INodeType {
 				name: 'resource',
 				type: 'options',
 				noDataExpression: true,
+				default: 'booking',
 				options: [
+					// Booking API Resources
 					{
 						name: 'Block',
 						value: 'block',
@@ -89,10 +99,16 @@ export class ApaleoAPI implements INodeType {
 						name: 'Types',
 						value: 'types',
 					},
+					// Finance API Resources
+					{
+						name: 'Folio',
+						value: 'folio',
+					},
 				],
-				default: 'booking',
 				required: true,
+				description: "Select the resource to interact with",
 			},
+			// Booking API Properties
 			...blockProperties,
 			...blockActionProperties,
 			...bookingProperties,
@@ -101,6 +117,8 @@ export class ApaleoAPI implements INodeType {
 			...reservationProperties,
 			...reservationActionProperties,
 			...typesProperties,
+			// Finance API Properties
+			...folioProperties,
 		],
 	};
 
@@ -122,6 +140,9 @@ export class ApaleoAPI implements INodeType {
 				}
 				if (resource === 'booking') {
 					await bookingOperations.call(this, i, operation, accessToken, returnData);
+				}
+				if (resource === 'folio') {
+					await folioOperations.call(this, i, operation, returnData);
 				}
 				if (resource === 'group') {
 					await groupOperations.call(this, i, operation, accessToken, returnData);
@@ -149,3 +170,5 @@ export class ApaleoAPI implements INodeType {
 		return [returnData];
 	}
 }
+
+module.exports = { ApaleoApi };
