@@ -207,8 +207,8 @@ export const reservationProperties: INodeProperties[] = [
 				description: "Filter reservations by status"
 			},
 			{
-				displayName: "Time Slice",
-				name: "timeSlice",
+				displayName: "Data Filter",
+				name: "dataFilter",
 				type: "options",
 				options: [
 					{
@@ -225,7 +225,7 @@ export const reservationProperties: INodeProperties[] = [
 					}
 				],
 				default: "Stay",
-				description: "Time slice to use for from/to date filtering"
+				description: "Data filter to use for from/to date filtering"
 			},
 			{
 				displayName: "To",
