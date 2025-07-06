@@ -10,13 +10,13 @@
     "api"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/hidN87/n8n-nodes-apaleo",
+  "homepage": "https://github.com/mike-master/n8n-nodes-apaleo-hotel",
   "author": {
     "name": "master"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hidN87/n8n-nodes-apaleo"
+    "url": "https://github.com/mike-master/n8n-nodes-apaleo-hotel"
   },
   "main": "index.js",
   "scripts": {
