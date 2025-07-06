@@ -53,9 +53,9 @@ export async function reservationOperations(
 			if (additionalFields.expand) {
 				qs.expand = additionalFields.expand;
 			}
-			if (additionalFields.dateFilter) {
-				qs.dateFilter = additionalFields.dateFilter;
-			}
+
+			// Always include dateFilter since it has a default value in properties
+			qs.dateFilter = additionalFields.dateFilter || 'Arrival';
 			break;
 
 		case 'GET reservation':
@@ -99,42 +99,6 @@ export async function reservationOperations(
 			if (typeof body === 'string') {
 				body = JSON.parse(body);
 			}
-			break;
-
-		case 'GET reservations':
-			endpoint = '/booking/v1/reservations';
-			const params = {
-				balanceFilter: this.getNodeParameter('balanceFilter', index, []) as string[],
-				allFoliosHaveInvoice: this.getNodeParameter('allFoliosHaveInvoice', index, false),
-				sort: this.getNodeParameter('sort', index, []) as string[],
-				expand: this.getNodeParameter('expand', index, []) as string[],
-				bookingId: this.getNodeParameter('bookingId', index, ''),
-				propertyIds: this.getNodeParameter('propertyIds', index, []) as string[],
-				ratePlanIds: this.getNodeParameter('ratePlanIds', index, []) as string[],
-				companyIds: this.getNodeParameter('companyIds', index, []) as string[],
-				unitIds: this.getNodeParameter('unitIds', index, []) as string[],
-				unitGroupIds: this.getNodeParameter('unitGroupIds', index, []) as string[],
-				unitGroupTypes: this.getNodeParameter('unitGroupTypes', index, []) as string[],
-				blockIds: this.getNodeParameter('blockIds', index, []) as string[],
-				marketSegmentIds: this.getNodeParameter('marketSegmentIds', index, []) as string[],
-				status: this.getNodeParameter('status', index, []) as string[],
-				dateFilter: this.getNodeParameter('dateFilter', index, ''),
-				from: this.getNodeParameter('from', index, ''),
-				to: this.getNodeParameter('to', index, ''),
-				channelCode: this.getNodeParameter('channelCode', index, []) as string[],
-				sources: this.getNodeParameter('sources', index, []) as string[],
-				validationMessageCategory: this.getNodeParameter(
-					'validationMessageCategory',
-					index,
-					[],
-				) as string[],
-				externalCode: this.getNodeParameter('externalCode', index, ''),
-				textSearch: this.getNodeParameter('textSearch', index, ''),
-				pageNumber: (this.getNodeParameter('pageNumber', index, 1) as number).toString(),
-				pageSize: (this.getNodeParameter('pageSize', index, 100) as number).toString(),
-			};
-
-			Object.assign(qs, params);
 			break;
 
 		case 'GET reservation count':
