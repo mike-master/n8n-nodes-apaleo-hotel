@@ -207,8 +207,8 @@ export const reservationProperties: INodeProperties[] = [
 				description: "Filter reservations by status"
 			},
 			{
-				displayName: "Data Filter",
-				name: "dataFilter",
+				displayName: "Date Filter",
+				name: "dateFilter",
 				type: "options",
 				options: [
 					{
@@ -225,8 +225,8 @@ export const reservationProperties: INodeProperties[] = [
 					}
 				],
 				default: "Stay",
-				description: "Data filter to use for from/to date filtering"
-			},
+				description: "Date filter to use for from/to date filtering"
+			},                       
 			{
 				displayName: "To",
 				name: "to",
