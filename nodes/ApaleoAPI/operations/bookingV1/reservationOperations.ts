@@ -155,7 +155,7 @@ export async function reservationOperations(
 			throw new Error(`Operation "${operation}" is not supported in reservationOperations.`);
 	}
 
-	console.error('Requesting Apaleo API:', { method, endpoint, body, qs });
+	//console.log('Requesting Apaleo API:', { method, endpoint, body, qs });
 	responseData = await apiRequest.call(this, method as IHttpRequestMethods, endpoint, body, qs);
 
 	returnData.push({ json: responseData });
