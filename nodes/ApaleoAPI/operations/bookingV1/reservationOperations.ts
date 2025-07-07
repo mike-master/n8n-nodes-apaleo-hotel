@@ -54,8 +54,11 @@ export async function reservationOperations(
 				qs.expand = additionalFields.expand;
 			}
 
-			// Always include dateFilter since it has a default value in properties
-			qs.dateFilter = additionalFields.dateFilter || 'Arrival';
+			// Include dateFilter when using date-based filtering (from/to parameters)
+			// The API requires dateFilter to understand how to interpret the date range
+			if (additionalFields.from || additionalFields.to) {
+				qs.dateFilter = additionalFields.dateFilter || 'Stay';
+			}
 			break;
 
 		case 'GET reservation':
@@ -152,6 +155,7 @@ export async function reservationOperations(
 			throw new Error(`Operation "${operation}" is not supported in reservationOperations.`);
 	}
 
+	console.error('Requesting Apaleo API:', { method, endpoint, body, qs });
 	responseData = await apiRequest.call(this, method as IHttpRequestMethods, endpoint, body, qs);
 
 	returnData.push({ json: responseData });
