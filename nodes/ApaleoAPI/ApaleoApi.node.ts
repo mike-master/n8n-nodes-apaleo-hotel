@@ -1,9 +1,5 @@
 import { IExecuteFunctions } from 'n8n-workflow';
-import {
-	INodeExecutionData,
-	INodeType,
-	INodeTypeDescription,
-} from 'n8n-workflow';
+import { INodeExecutionData, INodeType, INodeTypeDescription } from 'n8n-workflow';
 
 // Booking API Operations
 import { blockOperations } from './operations/bookingV1/blockOperations';
@@ -17,6 +13,7 @@ import { typesOperations } from './operations/bookingV1/typesOperations';
 
 // Finance API Operations
 import { folioOperations } from './operations/financeV1/folioOperations';
+import { folioActionOperations } from './operations/financeV1/folioActionOperations';
 
 // Booking API Properties
 import { blockProperties } from './properties/bookingV1/blockProperties';
@@ -104,9 +101,13 @@ class ApaleoApi implements INodeType {
 						name: 'Folio',
 						value: 'folio',
 					},
+					{
+						name: 'Folio Action',
+						value: 'folioAction',
+					},
 				],
 				required: true,
-				description: "Select the resource to interact with",
+				description: 'Select the resource to interact with',
 			},
 			// Booking API Properties
 			...blockProperties,
@@ -119,6 +120,7 @@ class ApaleoApi implements INodeType {
 			...typesProperties,
 			// Finance API Properties
 			...folioProperties,
+			...require('./properties/financeV1/folioActionProperties').folioActionProperties,
 		],
 	};
 
@@ -143,6 +145,9 @@ class ApaleoApi implements INodeType {
 				}
 				if (resource === 'folio') {
 					await folioOperations.call(this, i, operation, returnData);
+				}
+				if (resource === 'folioAction') {
+					await folioActionOperations.call(this, i, operation, returnData);
 				}
 				if (resource === 'group') {
 					await groupOperations.call(this, i, operation, accessToken, returnData);
