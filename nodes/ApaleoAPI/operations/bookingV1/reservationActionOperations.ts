@@ -50,6 +50,13 @@ export async function reservationActionOperations(
 			break;
 		}
 
+		case 'PUT mark reservation as no-show': {
+			// Endpoint: /booking/v1/reservation-actions/{id}/noshow
+			endpoint = `/booking/v1/reservation-actions/${reservationId}/noshow`;
+			method = 'PUT';
+			break;
+		}
+
 		case 'amend':
 			endpoint = `/booking/v1/reservations/${reservationId}`;
 			method = 'PATCH' as IHttpRequestMethods;
