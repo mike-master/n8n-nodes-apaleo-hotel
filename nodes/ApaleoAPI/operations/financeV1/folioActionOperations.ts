@@ -16,7 +16,7 @@ export async function folioActionOperations(
 		case 'PUT move multiple charges': {
 			method = 'PUT';
 			const folioId = this.getNodeParameter('folioId', index) as string;
-			endpoint = `/finance/v0-nsfw/folio-actions/${folioId}/move-charges`;
+			endpoint = `/finance/v1/folio-actions/${folioId}/move-charges`;
 
 			const targetFolioId = this.getNodeParameter('targetFolioId', index) as string;
 			const reason = this.getNodeParameter('reason', index) as string;
@@ -26,12 +26,23 @@ export async function folioActionOperations(
 
 			body.targetFolioId = targetFolioId;
 			if (reason) body.reason = reason;
-			if (chargeIds) body.chargeIds = chargeIds.split(',').map((id: string) => id.trim());
+			if (chargeIds)
+				body.chargeIds = chargeIds
+					.split(',')
+					.map((id: string) => id.trim())
+					.filter((id: string) => id);
 			else body.chargeIds = [];
-			if (allowanceIds) body.allowanceIds = allowanceIds.split(',').map((id: string) => id.trim());
+			if (allowanceIds)
+				body.allowanceIds = allowanceIds
+					.split(',')
+					.map((id: string) => id.trim())
+					.filter((id: string) => id);
 			else body.allowanceIds = [];
 			if (transitoryChargeIds)
-				body.transitoryChargeIds = transitoryChargeIds.split(',').map((id: string) => id.trim());
+				body.transitoryChargeIds = transitoryChargeIds
+					.split(',')
+					.map((id: string) => id.trim())
+					.filter((id: string) => id);
 			else body.transitoryChargeIds = [];
 
 			break;
