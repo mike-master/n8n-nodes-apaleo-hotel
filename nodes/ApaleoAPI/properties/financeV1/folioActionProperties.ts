@@ -18,6 +18,13 @@ export const folioActionProperties: INodeProperties[] = [
 					'Endpoint: /finance/v1/folio-actions/{folioId}/move-charges Move multiple charges, allowances and transitory charges from one folio to another',
 				action: 'PUT move multiple charges',
 			},
+			{
+				name: 'POST add no-show fee',
+				value: 'POST add no-show fee',
+				description:
+					'Endpoint: /finance/v1/folio-actions/{folioId}/no-show-fee Adds and directly posts a no-show fee to the folio',
+				action: 'POST add no-show fee',
+			},
 		],
 		default: 'PUT move multiple charges',
 		noDataExpression: true,
@@ -28,12 +35,53 @@ export const folioActionProperties: INodeProperties[] = [
 		name: 'folioId',
 		type: 'string',
 		default: '',
-		description: 'The ID of the source folio from where the charges should be moved away.',
+		description: 'The folio ID',
 		required: true,
 		displayOptions: {
 			show: {
 				resource: ['folioAction'],
-				operation: ['PUT move multiple charges'],
+				operation: ['POST add no-show fee'],
+			},
+		},
+	},
+	{
+		displayName: 'Amount',
+		name: 'amount',
+		type: 'number',
+		default: 0,
+		description: 'The amount of the no-show fee',
+		required: true,
+		displayOptions: {
+			show: {
+				resource: ['folioAction'],
+				operation: ['POST add no-show fee'],
+			},
+		},
+	},
+	{
+		displayName: 'Currency',
+		name: 'currency',
+		type: 'string',
+		default: '',
+		description: 'The currency of the no-show fee',
+		required: true,
+		displayOptions: {
+			show: {
+				resource: ['folioAction'],
+				operation: ['POST add no-show fee'],
+			},
+		},
+	},
+	{
+		displayName: 'Idempotency Key',
+		name: 'idempotencyKey',
+		type: 'string',
+		default: '',
+		description: 'Unique key for safely retrying requests (optional)',
+		displayOptions: {
+			show: {
+				resource: ['folioAction'],
+				operation: ['POST add no-show fee'],
 			},
 		},
 	},

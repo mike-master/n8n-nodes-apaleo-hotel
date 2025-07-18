@@ -47,6 +47,32 @@ export async function folioActionOperations(
 
 			break;
 		}
+		case 'POST add no-show fee': {
+			method = 'POST';
+			const folioId = this.getNodeParameter('folioId', index) as string;
+			endpoint = `/finance/v1/folio-actions/${folioId}/no-show-fee`;
+
+			const amount = this.getNodeParameter('amount', index) as number;
+			const currency = this.getNodeParameter('currency', index) as string;
+			const idempotencyKey = this.getNodeParameter('idempotencyKey', index, false) as string;
+
+			body = { amount, currency };
+
+			const headers: Record<string, string> = {};
+			if (idempotencyKey) {
+				headers['Idempotency-Key'] = idempotencyKey;
+			}
+
+			responseData = await apiRequest.call(this, method, endpoint, body, undefined, idempotencyKey);
+
+			if (responseData !== undefined) {
+				returnData.push({ json: responseData });
+			} else {
+				returnData.push({ json: {} });
+			}
+
+			return returnData;
+		}
 		default:
 			throw new Error(`The operation "${operation}" is not supported!`);
 	}
