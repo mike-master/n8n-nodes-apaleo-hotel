@@ -40,7 +40,7 @@ export const folioActionProperties: INodeProperties[] = [
 		displayOptions: {
 			show: {
 				resource: ['folioAction'],
-				operation: ['POST add no-show fee'],
+				operation: ['PUT move multiple charges', 'POST add no-show fee'],
 			},
 		},
 	},
